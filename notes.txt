@@ -1,0 +1,20 @@
+//   handlepostJob(){
+//     console.log(this.jobDetails)
+//     this.http.post("https://1337-crimson-wildflower-88221120.eu-ws4.runcode.io/jobs",this.jobDetails).subscribe((response)=>{
+//       console.log(response)
+//     })
+//   }
+// }
+
+
+connect@rajasekhar.co
+
+
+Previously worked as a lecturer for 3 years.
+•	Having  2 years of experience as a full stack developer at” Indstack”.
+
+
+
+
+
+https://bootdey.com/img/Content/avatar/avatar7.png

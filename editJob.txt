@@ -1,0 +1,134 @@
+user
+
+<a [routerLink]="['/edituser', item.id]">edit</a>
+
+
+
+
+import { HttpClient } from '@angular/common/http';
+
+import { Component } from '@angular/core';
+
+import { ActivatedRoute } from '@angular/router';
+
+ 
+
+@Component({
+
+  selector: 'app-edituser',
+
+  templateUrl: './edituser.component.html',
+
+  styleUrls: ['./edituser.component.css']
+
+})
+
+export class EdituserComponent {
+
+  id: any='';
+
+  user:any={}
+
+  constructor( private http:HttpClient ,private route: ActivatedRoute) {}
+
+
+
+
+ngOnInit(): void {
+
+    this.id = this.route.snapshot.paramMap.get('id')
+
+    console.log(this.id)
+
+    this.http.get("http://localhost:3000/users/" +this.id).subscribe(Response=>{
+
+      console.log(Response)
+
+      this.user=Response
+
+ 
+
+  })
+
+ 
+
+  }
+
+  edituser(id:number){
+
+    // this.http.post(`http://localhost:3306/users/${id}`).subscribe(
+
+    // this.id=id
+
+    // localStorage.setItem("dataSource", JSON.stringify(result))
+
+    this.http.patch(`http://localhost:3000/users/${id}`,this.user).subscribe((result) => {
+
+          this.id=id
+
+          // alert("record deleted successfully")
+
+  console.log("record updated")
+
+  alert("record updated successfully")
+
+  //  this.router.navigate(['userslist'])
+
+ 
+
+  },
+
+      error => {
+
+      console.error("error updating record")
+
+ 
+
+     }
+
+     );
+
+   }
+
+
+
+
+<form>
+
+  <div>
+
+    <label>Name</label>
+
+    <input type="text" name="name" [(ngModel)]="user.name">
+
+  </div>
+
+  <div>
+
+    <label>Email</label>
+
+    <input type="text" name="email" [(ngModel)]="user.email">
+
+  </div>
+
+  <div>
+
+    <label>Mobile</label>
+
+    <input type="text" name="mobile" [(ngModel)]="user.mobile">
+
+  </div>
+
+  <div><button type="submit" (click)=" edituser(user.id)">submit</button></div>
+
+ 
+
+ 
+
+</form>
+
+
+
+
+
+
